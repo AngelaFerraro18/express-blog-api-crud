@@ -30,7 +30,16 @@ function modify(req, res){
 
 //destroy
 function destroy(req, res){
-    res.send('Eliminazione del post' + req.params.id);
+    let id = parseInt(req.params.id);
+    let currentPost = posts.find(post => id === post.id);
+
+    //uso il metodo degli array splice
+    posts.splice(posts.indexOf(currentPost), 1);
+    //stampo in console l'array aggiornato
+    console.log(posts);
+
+    //mando come risposta lo stato "204 no Content"
+    res.sendStatus(204);
 }
 
 
