@@ -3,7 +3,17 @@ const posts = require('../data/posts.js');
 
 //index
 function index(req, res){
-    res.json(posts);
+    //la lista dei post sarà inizialmente uguale all'originale fornita
+    let filteredPost = posts;
+    
+    //filtro per vedere se il tag è presente
+    if (req.query.tag){
+        
+        filteredPost = posts.filter(post => post.tags.includes(req.query.tag));
+    }
+    console.log(filteredPost);
+    //mando in risposta gli elementi risultanti della ricerca
+    res.json(filteredPost);
 }
 
 //show
