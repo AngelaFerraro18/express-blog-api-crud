@@ -3,12 +3,14 @@ const posts = require('../data/posts.js');
 
 //index
 function index(req, res){
-    res.send('Sono la lista dei post');
+    res.json(posts);
 }
 
 //show
 function show(req, res){
-    res.send('Dettagli del post' + req.params.id);
+    let id = parseInt(req.params.id);
+    let currentPost = posts.find(post => id === post.id);
+    res.json(currentPost);
 }
 
 //store
