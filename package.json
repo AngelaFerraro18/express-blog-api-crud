@@ -4,8 +4,8 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start" : "node app.js",
-    "dev" : "node --watch app.js"
+    "start": "node app.js",
+    "dev": "node --watch app.js"
   },
   "repository": {
     "type": "git",
@@ -17,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/AngelaFerraro18/express-blog-api-crud/issues"
   },
-  "homepage": "https://github.com/AngelaFerraro18/express-blog-api-crud#readme"
+  "homepage": "https://github.com/AngelaFerraro18/express-blog-api-crud#readme",
+  "dependencies": {
+    "express": "^4.21.2"
+  }
 }
