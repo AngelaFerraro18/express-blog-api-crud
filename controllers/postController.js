@@ -30,7 +30,7 @@ function show(req, res) {
         return res.json({
             status: '404',
             error: 'Not Found',
-            message: 'Pizza non trovata'
+            message: 'Post non trovato'
         })
     }
     res.json(currentPost);
@@ -59,14 +59,40 @@ function store(req, res) {
 
     //inseriamo lo status corretto che in questo caso è 201 created (success)
     res.status(201);
-    
+
     //restituisco il risultato (il nuovo post creato) in formato json
     res.json(newPost);
 }
 
 //update
 function update(req, res) {
-    res.send('Modifica totale del post' + req.params.id);
+
+    let id = parseInt(req.params.id);
+    let currentPost = posts.find(post => id === post.id);
+
+    //verifico se l'elemento esiste o meno
+    if (!currentPost) {
+
+        //imposto lo status con il codice 404 
+        res.status(404);
+
+        return res.json({
+            status: '404',
+            error: 'Not Found',
+            message: 'Post non trovato'
+        })
+    }
+
+    //aggiorno tutti i dati del post
+    currentPost.title = req.body.title;
+    currentPost.content = req.body.content;
+    currentPost.image = req.body.image;
+    currentPost.tags = req.body.tags;
+
+    console.log(currentPost);
+
+    //restituisco il post modificato interamente in json
+    res.json(currentPost);
 }
 
 //modify
@@ -88,7 +114,7 @@ function destroy(req, res) {
         return res.json({
             status: '404',
             error: 'Not Found',
-            message: 'Pizza non trovata'
+            message: 'Post non trovato'
         })
     }
 
