@@ -38,7 +38,30 @@ function show(req, res) {
 
 //store
 function store(req, res) {
-    res.send('Creazione di un nuovo post');
+    console.log(req.body);
+
+    //creo un nuovo id per l'oggetto (post) che andrò a creare
+    const newId = posts[posts.length - 1].id + 1;
+
+    //creo il nuovo oggetto con tutti gli elementi che hanno anche gli altri oggetti del mio array
+    const newPost = {
+        id: newId,
+        title: req.body.title,
+        content: req.body.content,
+        image: req.body.image,
+        tags: req.body.tags
+    }
+
+    //con il metodo push vado ad inserire il nuovo post nel mio array di partenza
+    posts.push(newPost);
+
+    console.log(posts);
+
+    //inseriamo lo status corretto che in questo caso è 201 created (success)
+    res.status(201);
+    
+    //restituisco il risultato (il nuovo post creato) in formato json
+    res.json(newPost);
 }
 
 //update
