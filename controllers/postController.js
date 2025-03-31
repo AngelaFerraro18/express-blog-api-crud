@@ -97,7 +97,39 @@ function update(req, res) {
 
 //modify
 function modify(req, res) {
-    res.send('Modifica parziale del post' + req.params.id);
+    let id = parseInt(req.params.id);
+    let currentPost = posts.find(post => id === post.id);
+
+    //verifico se l'elemento esiste o meno
+    if (!currentPost) {
+
+        //imposto lo status con il codice 404 
+        res.status(404);
+
+        return res.json({
+            status: '404',
+            error: 'Not Found',
+            message: 'Post non trovato'
+        })
+    }
+
+    //aggiorno alcuni dati del post
+    if(currentPost.title){
+        currentPost.title = req.body.title; 
+    }
+
+    if(currentPost.content){
+        currentPost.content = req.body.content;
+    }
+
+    if(currentPost.image){
+        currentPost.image = req.body.image;
+    }
+   
+    console.log(currentPost);
+
+    //restituisco il post modificato nelle parti che ho scelto in json
+    res.json(currentPost);
 }
 
 //destroy
