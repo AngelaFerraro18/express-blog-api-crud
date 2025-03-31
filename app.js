@@ -5,6 +5,9 @@ const postsRouters = require('./routers/postsRouters.js');
 const app = express();
 const port = 3000;
 
+//decodifico con il body-parser
+app.use(express.json());
+
 //bacheca con i post
 app.use('/posts', postsRouters);
 
