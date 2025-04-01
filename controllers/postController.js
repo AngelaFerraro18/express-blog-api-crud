@@ -3,6 +3,7 @@ const posts = require('../data/posts.js');
 
 //index
 function index(req, res) {
+    // pluto.get(); ---> aggiunto per testare l'errore in postman
     //la lista dei post sarà inizialmente uguale all'originale fornita
     let filteredPost = posts;
 
